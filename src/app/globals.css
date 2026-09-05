@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
+/*
+  Brand palette (matches AGI logo: navy wordmark, teal building mark, icy-blue field).
+  Token names kept from the original build for minimal churn — mapping:
+  charcoal      -> deep navy (primary dark / hero / footer)
+  charcoal-soft -> secondary navy (gradients, dark card surfaces)
+  graphite      -> navy-grey body text on light backgrounds
+  aluminium     -> steel blue-grey (muted text, borders on dark)
+  aluminium-light -> light steel (secondary text on dark)
+  bronze / bronze-dark -> teal accent / teal hover
+  cream / muted -> icy-blue page background / alternating section tint
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6fafc;
+  --foreground: #0a1f38;
+
+  --color-charcoal: #0a1f38;
+  --color-charcoal-soft: #123258;
+  --color-graphite: #34495f;
+  --color-aluminium: #7b93a8;
+  --color-aluminium-light: #c3d3e0;
+  --color-bronze: #1793ab;
+  --color-bronze-dark: #0f7488;
+  --color-cream: #f6fafc;
+  --color-muted: #eaf3f9;
+  --color-border: #dce7ee;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-charcoal: #0a1f38;
+  --color-charcoal-soft: #123258;
+  --color-graphite: #34495f;
+  --color-aluminium: #7b93a8;
+  --color-aluminium-light: #c3d3e0;
+  --color-bronze: #1793ab;
+  --color-bronze-dark: #0f7488;
+  --color-cream: #f6fafc;
+  --color-muted: #eaf3f9;
+  --color-border: #dce7ee;
+
+  --font-heading: var(--font-outfit);
+  --font-body: var(--font-work-sans);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.9s ease both;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+::selection {
+  background: var(--color-bronze);
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-mesh {
+  background:
+    radial-gradient(60% 50% at 15% 10%, rgba(23, 147, 171, 0.35), transparent 60%),
+    radial-gradient(50% 45% at 85% 15%, rgba(23, 147, 171, 0.18), transparent 60%),
+    radial-gradient(70% 60% at 50% 100%, rgba(18, 50, 88, 0.9), transparent 70%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ffffff 0%, #cfe9f0 60%, #6fd3e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
