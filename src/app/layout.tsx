@@ -102,7 +102,7 @@ const jsonLd = {
       name: "SAGGA Affiliate (South African Glass & Glazing Association)",
     },
   ],
-  sameAs: [],
+  sameAs: ["https://www.google.com/search?kgmid=/g/11y98mtbjf"],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
