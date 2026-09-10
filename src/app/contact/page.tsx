@@ -4,13 +4,15 @@ import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { DirectLines } from "@/components/DirectLines";
 import { Reveal } from "@/components/Reveal";
-import { contact } from "@/lib/data";
+import { contact, siteCopy } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Call or email AGI Interior Specialists directly in Johannesburg, Cape Town or Polokwane to scope your next aluminium, drywall or ceiling fit-out.",
 };
+
+const { contactPage } = siteCopy;
 
 const directLines = [
   { label: "Johannesburg", number: contact.phones[0].number, note: "Head Office" },
@@ -22,9 +24,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Get In Touch"
-        title="Speak to our team directly"
-        description="For fit-outs of this scale, a phone call gets you further than a form. Call or email your nearest regional team and we'll scope the project with you directly."
+        eyebrow={contactPage.heroEyebrow}
+        title={contactPage.heroTitle}
+        description={contactPage.heroDescription}
         image="/images/projects/somerset-mall-2.jpg"
       />
 
@@ -33,10 +35,10 @@ export default function ContactPage() {
           <Reveal>
             <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium-light">
               <span className="label-mark" />
-              Direct Lines
+              {contactPage.directLinesEyebrow}
             </p>
             <h2 className="mt-4 max-w-xl font-heading text-4xl font-light text-white sm:text-5xl">
-              Call your nearest team
+              {contactPage.directLinesHeadline}
             </h2>
           </Reveal>
 
@@ -52,7 +54,7 @@ export default function ContactPage() {
               Head Office
             </p>
             <h2 className="mt-6 font-heading text-3xl font-light text-charcoal sm:text-4xl">
-              Unit 4B, New Goch Road
+              {contactPage.officeHeadline}
             </h2>
             <div className="mt-6 flex gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted text-charcoal">
@@ -76,14 +78,13 @@ export default function ContactPage() {
           <Reveal delay={0.1}>
             <div className="rounded-2xl border border-border bg-muted p-8 sm:p-10">
               <p className="text-xs uppercase tracking-[0.2em] text-aluminium">
-                Prefer to write instead?
+                {contactPage.formEyebrow}
               </p>
               <h3 className="mt-3 font-heading text-2xl font-light text-charcoal">
-                Send us your project details
+                {contactPage.formHeadline}
               </h3>
               <p className="mt-2 text-sm text-graphite">
-                Tell us about the site and scope &mdash; a project lead will call
-                you back to discuss the fit-out.
+                {contactPage.formDescription}
               </p>
               <div className="mt-8">
                 <ContactForm />

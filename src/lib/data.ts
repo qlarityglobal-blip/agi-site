@@ -17,6 +17,7 @@ export type Project = {
   category: string;
   location?: string;
   note?: string;
+  description?: string;
   featured?: boolean;
   cover: string;
   images: string[];
@@ -40,6 +41,65 @@ export type Contact = {
   email: string;
 };
 
+export type Stat = { value: number; suffix: string; label: string };
+
+export type Value = {
+  icon: "award" | "target" | "users" | "map-pin";
+  title: string;
+  text: string;
+};
+
+export type SiteCopy = {
+  hero: {
+    eyebrow: string;
+    headline: string;
+    subheadline: string;
+    primaryCtaLabel: string;
+    secondaryCtaLabel: string;
+    badge: string;
+    stats: Stat[];
+  };
+  aboutPreview: {
+    eyebrow: string;
+    headline: string;
+    body: string;
+    points: string[];
+  };
+  credentialsSection: {
+    eyebrow: string;
+    headline: string;
+    description: string;
+  };
+  ctaBanner: {
+    eyebrow: string;
+    headline: string;
+    description: string;
+  };
+  aboutPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    storyEyebrow: string;
+    storyHeadline: string;
+    storyParagraphs: string[];
+    valuesEyebrow: string;
+    valuesHeadline: string;
+    values: Value[];
+  };
+  contactPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    directLinesEyebrow: string;
+    directLinesHeadline: string;
+    officeHeadline: string;
+    formEyebrow: string;
+    formHeadline: string;
+    formDescription: string;
+  };
+};
+
+export const siteCopy: SiteCopy = siteContent.siteCopy as SiteCopy;
 export const services: Service[] = siteContent.services;
 export const projects: Project[] = siteContent.projects;
 export const credentials: Credential[] = siteContent.credentials;

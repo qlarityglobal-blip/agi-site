@@ -2,13 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { siteCopy } from "@/lib/data";
 
-const points = [
-  "30+ years of hands-on aluminium, glazing & drywall expertise",
-  "B-BBEE Level 2 Contributor — 125% procurement recognition",
-  "CIDB & CSD registered, SAGGA affiliated",
-  "Finishes built to hold up under facilities-management scrutiny",
-];
+const { aboutPreview } = siteCopy;
+const points = aboutPreview.points;
 
 export function AboutPreview() {
   return (
@@ -40,16 +37,13 @@ export function AboutPreview() {
         <Reveal delay={0.1}>
           <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium">
             <span className="label-mark" />
-            About AGI
+            {aboutPreview.eyebrow}
           </p>
           <h2 className="mt-6 font-heading text-4xl font-light leading-[1.05] text-charcoal sm:text-5xl">
-            Three decades in aluminium, glazing and drywall.
+            {aboutPreview.headline}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-graphite">
-            AGI is a Johannesburg-based contractor with thirty years in
-            aluminium, glazing and drywall. It shows in the details most
-            people never think to check: tolerances, fixings and finishes
-            that still hold up long after the walkthrough.
+            {aboutPreview.body}
           </p>
           <ul className="mt-8 space-y-3">
             {points.map((point) => (

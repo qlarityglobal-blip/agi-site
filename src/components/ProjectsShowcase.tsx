@@ -210,6 +210,11 @@ export function ProjectsShowcase({ list }: { list: Project[] }) {
                 {active.note && (
                   <p className="mt-1 text-sm text-aluminium-light">{active.note}</p>
                 )}
+                {active.description && (
+                  <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-aluminium-light">
+                    {active.description}
+                  </p>
+                )}
               </div>
             </div>
           </motion.div>

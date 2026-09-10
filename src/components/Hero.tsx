@@ -7,13 +7,10 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Award } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Magnetic } from "@/components/Magnetic";
+import { siteCopy } from "@/lib/data";
 
-const stats = [
-  { value: 30, suffix: "+", label: "Years experience" },
-  { value: 3, suffix: "", label: "Regional teams" },
-  { value: 6, suffix: "", label: "Specialist trades" },
-  { value: 100, suffix: "+", label: "Projects delivered" },
-];
+const { hero } = siteCopy;
+const stats = hero.stats;
 
 const slides = [
   { src: "/images/hero.jpg", alt: "AGI aluminium and glazing project" },
@@ -72,7 +69,7 @@ export function Hero() {
             className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-aluminium-light"
           >
             <span className="label-mark" />
-            Interior Specialists &middot; Johannesburg, South Africa
+            {hero.eyebrow}
           </motion.p>
 
           <motion.h1
@@ -81,7 +78,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="max-w-3xl font-heading text-6xl font-light leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-8xl"
           >
-            Aluminium, glazing and drywall for South Africa&rsquo;s biggest builds.
+            {hero.headline}
           </motion.h1>
 
           <motion.p
@@ -90,9 +87,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.24 }}
             className="mt-8 max-w-lg text-base leading-relaxed text-aluminium-light"
           >
-            We fit out hospitals, malls, campuses and corporate offices in
-            aluminium, glazing, drywall and ceilings. Over 30 years in the
-            trade, with teams based right across the country.
+            {hero.subheadline}
           </motion.p>
 
           <motion.div
@@ -106,7 +101,7 @@ export function Hero() {
                 href="/gallery"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm text-charcoal transition hover:bg-aluminium-light"
               >
-                View Our Work
+                {hero.primaryCtaLabel}
                 <ArrowRight size={15} className="transition group-hover:translate-x-1" />
               </Link>
             </Magnetic>
@@ -115,12 +110,12 @@ export function Hero() {
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm text-white transition hover:border-white"
               >
-                Contact Us
+                {hero.secondaryCtaLabel}
               </Link>
             </Magnetic>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3.5 py-2 text-xs uppercase tracking-wider text-aluminium-light">
               <Award size={13} />
-              B-BBEE Level 2
+              {hero.badge}
             </span>
           </motion.div>
 

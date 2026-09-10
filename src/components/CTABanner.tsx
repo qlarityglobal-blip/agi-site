@@ -2,7 +2,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { Magnetic } from "@/components/Magnetic";
-import { contact } from "@/lib/data";
+import { contact, siteCopy } from "@/lib/data";
+
+const { ctaBanner } = siteCopy;
 
 export function CTABanner() {
   return (
@@ -11,15 +13,14 @@ export function CTABanner() {
         <Reveal>
           <p className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium">
             <span className="label-mark" />
-            Let&rsquo;s Build
+            {ctaBanner.eyebrow}
             <span className="label-mark" />
           </p>
           <h2 className="mt-6 font-heading text-4xl font-light leading-tight text-white sm:text-5xl">
-            Ready to start your next fit-out?
+            {ctaBanner.headline}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base text-aluminium-light">
-            From a single shopfront to a full turnkey build &mdash; our teams are
-            ready to scope your project anywhere in South Africa.
+            {ctaBanner.description}
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Magnetic strength={0.3} className="inline-flex">

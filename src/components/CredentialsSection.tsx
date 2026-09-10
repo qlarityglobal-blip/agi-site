@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { Award, BadgeCheck, ShieldCheck } from "lucide-react";
 import { RevealGroup, revealItem, Reveal } from "@/components/Reveal";
-import { credentials } from "@/lib/data";
+import { credentials, siteCopy } from "@/lib/data";
 
 const icons = { bbbee: Award, cidb: ShieldCheck, sagga: BadgeCheck };
+const { credentialsSection } = siteCopy;
 
 export function CredentialsSection() {
   return (
@@ -16,15 +17,14 @@ export function CredentialsSection() {
             <div>
               <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium-light">
                 <span className="label-mark" />
-                Compliance &amp; Standing
+                {credentialsSection.eyebrow}
               </p>
               <h2 className="mt-6 max-w-xl font-heading text-4xl font-light text-white sm:text-5xl">
-                Cleared for tender. Built for scale.
+                {credentialsSection.headline}
               </h2>
             </div>
             <p className="max-w-sm text-sm text-aluminium-light">
-              The credentials procurement teams check first &mdash; verified and
-              current, so your project doesn&rsquo;t stall on compliance.
+              {credentialsSection.description}
             </p>
           </div>
         </Reveal>

@@ -1,4 +1,103 @@
 {
+  "siteCopy": {
+    "hero": {
+      "eyebrow": "Interior Specialists · Johannesburg, South Africa",
+      "headline": "Aluminium, glazing and drywall for South Africa's biggest builds.",
+      "subheadline": "We fit out hospitals, malls, campuses and corporate offices in aluminium, glazing, drywall and ceilings. Over 30 years in the trade, with teams based right across the country.",
+      "primaryCtaLabel": "View Our Work",
+      "secondaryCtaLabel": "Contact Us",
+      "badge": "B-BBEE Level 2",
+      "stats": [
+        {
+          "value": 30,
+          "suffix": "+",
+          "label": "Years experience"
+        },
+        {
+          "value": 3,
+          "suffix": "",
+          "label": "Regional teams"
+        },
+        {
+          "value": 6,
+          "suffix": "",
+          "label": "Specialist trades"
+        },
+        {
+          "value": 100,
+          "suffix": "+",
+          "label": "Projects delivered"
+        }
+      ]
+    },
+    "aboutPreview": {
+      "eyebrow": "About AGI",
+      "headline": "Three decades in aluminium, glazing and drywall.",
+      "body": "AGI is a Johannesburg-based contractor with thirty years in aluminium, glazing and drywall. It shows in the details most people never think to check: tolerances, fixings and finishes that still hold up long after the walkthrough.",
+      "points": [
+        "30+ years of hands-on aluminium, glazing & drywall expertise",
+        "B-BBEE Level 2 Contributor — 125% procurement recognition",
+        "CIDB & CSD registered, SAGGA affiliated",
+        "Finishes built to hold up under facilities-management scrutiny"
+      ]
+    },
+    "credentialsSection": {
+      "eyebrow": "Compliance & Standing",
+      "headline": "Cleared for tender. Built for scale.",
+      "description": "The credentials procurement teams check first — verified and current, so your project doesn't stall on compliance."
+    },
+    "ctaBanner": {
+      "eyebrow": "Let's Build",
+      "headline": "Ready to start your next fit-out?",
+      "description": "From a single shopfront to a full turnkey build — our teams are ready to scope your project anywhere in South Africa."
+    },
+    "aboutPage": {
+      "heroEyebrow": "About AGI",
+      "heroTitle": "30 years of getting the detail right",
+      "heroDescription": "B-BBEE Level 2. CIDB registered. Three decades of hands-on experience in aluminium, glazing, drywall and ceiling systems.",
+      "storyEyebrow": "Our Story",
+      "storyHeadline": "Three decades of hands-on fit-out experience.",
+      "storyParagraphs": [
+        "AGI has spent thirty years fabricating and installing aluminium, glazing, drywall and ceiling systems across South Africa. We check tolerances on site, specify fixings properly the first time, and use finishes that still hold up well after handover, not just on the day of the walkthrough.",
+        "Our teams have worked on hospital wards, university campuses, an airline's head office and national retail rollouts, often on sites where a missed deadline simply wasn't an option."
+      ],
+      "valuesEyebrow": "What Sets Us Apart",
+      "valuesHeadline": "What clients notice first.",
+      "values": [
+        {
+          "icon": "award",
+          "title": "Three Decades of Technical Craft",
+          "text": "30+ years fabricating and installing aluminium, glazing, drywall and ceiling systems — expertise that shows in the detailing, not just the finish."
+        },
+        {
+          "icon": "target",
+          "title": "Precision Over Shortcuts",
+          "text": "Tolerances, fixings and finishes checked against spec at every stage, not just before client walkthroughs."
+        },
+        {
+          "icon": "users",
+          "title": "One Point of Accountability",
+          "text": "A single project lead owns your scope end-to-end, across every trade involved in the fit-out."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Compliance-Ready",
+          "text": "B-BBEE Level 2, CIDB registered and SAGGA affiliated — procurement can clear us without delay."
+        }
+      ]
+    },
+    "contactPage": {
+      "heroEyebrow": "Get In Touch",
+      "heroTitle": "Speak to our team directly",
+      "heroDescription": "For fit-outs of this scale, a phone call gets you further than a form. Call or email your nearest regional team and we'll scope the project with you directly.",
+      "directLinesEyebrow": "Direct Lines",
+      "directLinesHeadline": "Call your nearest team",
+      "officeHeadline": "Unit 4B, New Goch Road",
+      "formEyebrow": "Prefer to write instead?",
+      "formHeadline": "Send us your project details",
+      "formDescription": "Tell us about the site and scope — a project lead will call you back to discuss the fit-out."
+    }
+  },
   "services": [
     {
       "slug": "aluminium",
@@ -104,7 +203,8 @@
         "/images/projects/university-mpumalanga-2.jpg",
         "/images/projects/university-mpumalanga-3.jpg",
         "/images/projects/university-mpumalanga-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "steve-tshwete-hospital",
@@ -119,7 +219,8 @@
         "/images/projects/steve-tshwete-hospital-2.jpg",
         "/images/projects/steve-tshwete-hospital-3.jpg",
         "/images/projects/steve-tshwete-hospital-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "mmamethalke-hospital",
@@ -133,7 +234,8 @@
         "/images/projects/mmamethalke-hospital-2.jpg",
         "/images/projects/mmamethalke-hospital-3.jpg",
         "/images/projects/mmamethalke-hospital-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "baragwaneth-hospital",
@@ -143,7 +245,8 @@
       "cover": "/images/projects/baragwaneth-hospital.jpg",
       "images": [
         "/images/projects/baragwaneth-hospital.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "comair",
@@ -157,7 +260,8 @@
         "/images/projects/comair-2.jpg",
         "/images/projects/comair-3.jpg",
         "/images/projects/comair-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "kathrine-towers",
@@ -170,7 +274,8 @@
         "/images/projects/kathrine-towers-2.jpg",
         "/images/projects/kathrine-towers-3.jpg",
         "/images/projects/kathrine-towers-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "somerset-mall",
@@ -183,7 +288,8 @@
         "/images/projects/somerset-mall-2.jpg",
         "/images/projects/somerset-mall-3.jpg",
         "/images/projects/somerset-mall-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "dwarsloop-mall",
@@ -196,7 +302,8 @@
         "/images/projects/dwarsloop-mall-2.jpg",
         "/images/projects/dwarsloop-mall-3.jpg",
         "/images/projects/dwarsloop-mall-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "maranatha-church",
@@ -209,7 +316,8 @@
         "/images/projects/maranatha-church-2.jpg",
         "/images/projects/maranatha-church-3.jpg",
         "/images/projects/maranatha-church-4.jpg"
-      ]
+      ],
+      "description": ""
     },
     {
       "slug": "residential",
@@ -222,7 +330,8 @@
         "/images/projects/residential-2.jpg",
         "/images/projects/residential-3.jpg",
         "/images/projects/residential-4.jpg"
-      ]
+      ],
+      "description": ""
     }
   ],
   "credentials": [

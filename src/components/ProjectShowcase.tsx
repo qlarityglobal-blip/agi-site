@@ -103,6 +103,11 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                         {project.location}
                       </p>
                     )}
+                    {project.description && (
+                      <p className="mt-2 max-w-md text-sm leading-relaxed text-aluminium-light">
+                        {project.description}
+                      </p>
+                    )}
                   </motion.div>
                 </AnimatePresence>
 

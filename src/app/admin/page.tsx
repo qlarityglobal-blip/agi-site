@@ -20,6 +20,7 @@ type Project = {
   category: string;
   location?: string;
   note?: string;
+  description?: string;
   featured?: boolean;
   cover: string;
   images: string[];
@@ -43,7 +44,48 @@ type Contact = {
   email: string;
 };
 
+type Stat = { value: number; suffix: string; label: string };
+type Value = { icon: "award" | "target" | "users" | "map-pin"; title: string; text: string };
+
+type SiteCopy = {
+  hero: {
+    eyebrow: string;
+    headline: string;
+    subheadline: string;
+    primaryCtaLabel: string;
+    secondaryCtaLabel: string;
+    badge: string;
+    stats: Stat[];
+  };
+  aboutPreview: { eyebrow: string; headline: string; body: string; points: string[] };
+  credentialsSection: { eyebrow: string; headline: string; description: string };
+  ctaBanner: { eyebrow: string; headline: string; description: string };
+  aboutPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    storyEyebrow: string;
+    storyHeadline: string;
+    storyParagraphs: string[];
+    valuesEyebrow: string;
+    valuesHeadline: string;
+    values: Value[];
+  };
+  contactPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    directLinesEyebrow: string;
+    directLinesHeadline: string;
+    officeHeadline: string;
+    formEyebrow: string;
+    formHeadline: string;
+    formDescription: string;
+  };
+};
+
 type SiteContent = {
+  siteCopy: SiteCopy;
   services: Service[];
   projects: Project[];
   credentials: Credential[];
@@ -51,7 +93,17 @@ type SiteContent = {
   contact: Contact;
 };
 
-const TABS = ["Services", "Projects", "Credentials", "Associates", "Contact"] as const;
+const ICON_OPTIONS: Value["icon"][] = ["award", "target", "users", "map-pin"];
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+const TABS = ["Site Text", "Services", "Projects", "Credentials", "Associates", "Contact"] as const;
 type Tab = (typeof TABS)[number];
 
 function field(label: string, children: React.ReactNode) {
@@ -205,6 +257,732 @@ export default function AdminPage() {
         ))}
       </div>
 
+      {tab === "Site Text" && (
+        <div className="space-y-10">
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">Homepage hero</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Eyebrow label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.hero.eyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, eyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Badge (e.g. B-BBEE Level 2)",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.hero.badge}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, badge: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Headline",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.hero.headline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, headline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Subheadline",
+                <textarea
+                  className={inputClass}
+                  rows={3}
+                  value={content.siteCopy.hero.subheadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, subheadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {field(
+                "Primary button label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.hero.primaryCtaLabel}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, primaryCtaLabel: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Secondary button label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.hero.secondaryCtaLabel}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        hero: { ...content.siteCopy.hero, secondaryCtaLabel: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              <span className="mb-2 block text-sm font-medium text-neutral-700">Stats strip</span>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {content.siteCopy.hero.stats.map((s, i) => (
+                  <div key={i} className="flex gap-2">
+                    <input
+                      className={inputClass}
+                      type="number"
+                      value={s.value}
+                      onChange={(e) => {
+                        const stats = [...content.siteCopy.hero.stats];
+                        stats[i] = { ...s, value: Number(e.target.value) };
+                        setContent({
+                          ...content,
+                          siteCopy: { ...content.siteCopy, hero: { ...content.siteCopy.hero, stats } },
+                        });
+                      }}
+                    />
+                    <input
+                      className={inputClass}
+                      placeholder="Suffix e.g. +"
+                      value={s.suffix}
+                      onChange={(e) => {
+                        const stats = [...content.siteCopy.hero.stats];
+                        stats[i] = { ...s, suffix: e.target.value };
+                        setContent({
+                          ...content,
+                          siteCopy: { ...content.siteCopy, hero: { ...content.siteCopy.hero, stats } },
+                        });
+                      }}
+                    />
+                    <input
+                      className={inputClass}
+                      placeholder="Label"
+                      value={s.label}
+                      onChange={(e) => {
+                        const stats = [...content.siteCopy.hero.stats];
+                        stats[i] = { ...s, label: e.target.value };
+                        setContent({
+                          ...content,
+                          siteCopy: { ...content.siteCopy, hero: { ...content.siteCopy.hero, stats } },
+                        });
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">Homepage &ldquo;About AGI&rdquo; preview</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Eyebrow label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPreview.eyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPreview: { ...content.siteCopy.aboutPreview, eyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPreview.headline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPreview: { ...content.siteCopy.aboutPreview, headline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Body paragraph",
+                <textarea
+                  className={inputClass}
+                  rows={3}
+                  value={content.siteCopy.aboutPreview.body}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPreview: { ...content.siteCopy.aboutPreview, body: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Bullet points (one per line)",
+                <textarea
+                  className={inputClass}
+                  rows={4}
+                  value={content.siteCopy.aboutPreview.points.join("\n")}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPreview: {
+                          ...content.siteCopy.aboutPreview,
+                          points: e.target.value.split("\n").filter(Boolean),
+                        },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">Credentials section (Home &amp; About)</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Eyebrow label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.credentialsSection.eyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        credentialsSection: { ...content.siteCopy.credentialsSection, eyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.credentialsSection.headline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        credentialsSection: { ...content.siteCopy.credentialsSection, headline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Description",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.credentialsSection.description}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        credentialsSection: { ...content.siteCopy.credentialsSection, description: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">Bottom &ldquo;Ready to start?&rdquo; banner</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Eyebrow label",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.ctaBanner.eyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        ctaBanner: { ...content.siteCopy.ctaBanner, eyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.ctaBanner.headline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        ctaBanner: { ...content.siteCopy.ctaBanner, headline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Description",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.ctaBanner.description}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        ctaBanner: { ...content.siteCopy.ctaBanner, description: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">About page</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Hero eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.heroEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, heroEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Hero title",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.heroTitle}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, heroTitle: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Hero description",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.aboutPage.heroDescription}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, heroDescription: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {field(
+                "Story eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.storyEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, storyEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Story headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.storyHeadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, storyHeadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Story paragraphs (one per line)",
+                <textarea
+                  className={inputClass}
+                  rows={5}
+                  value={content.siteCopy.aboutPage.storyParagraphs.join("\n")}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: {
+                          ...content.siteCopy.aboutPage,
+                          storyParagraphs: e.target.value.split("\n").filter(Boolean),
+                        },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {field(
+                "Values section eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.valuesEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, valuesEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Values section headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.aboutPage.valuesHeadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        aboutPage: { ...content.siteCopy.aboutPage, valuesHeadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-6 space-y-4">
+              {content.siteCopy.aboutPage.values.map((v, i) => (
+                <div key={i} className="rounded-lg border border-neutral-200 p-4">
+                  <div className="grid gap-3 sm:grid-cols-[140px_1fr]">
+                    <label className="block text-sm">
+                      <span className="mb-1 block font-medium text-neutral-700">Icon</span>
+                      <select
+                        className={inputClass}
+                        value={v.icon}
+                        onChange={(e) => {
+                          const values = [...content.siteCopy.aboutPage.values];
+                          values[i] = { ...v, icon: e.target.value as Value["icon"] };
+                          setContent({
+                            ...content,
+                            siteCopy: { ...content.siteCopy, aboutPage: { ...content.siteCopy.aboutPage, values } },
+                          });
+                        }}
+                      >
+                        {ICON_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    {field(
+                      "Title",
+                      <input
+                        className={inputClass}
+                        value={v.title}
+                        onChange={(e) => {
+                          const values = [...content.siteCopy.aboutPage.values];
+                          values[i] = { ...v, title: e.target.value };
+                          setContent({
+                            ...content,
+                            siteCopy: { ...content.siteCopy, aboutPage: { ...content.siteCopy.aboutPage, values } },
+                          });
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div className="mt-3">
+                    {field(
+                      "Text",
+                      <textarea
+                        className={inputClass}
+                        rows={2}
+                        value={v.text}
+                        onChange={(e) => {
+                          const values = [...content.siteCopy.aboutPage.values];
+                          values[i] = { ...v, text: e.target.value };
+                          setContent({
+                            ...content,
+                            siteCopy: { ...content.siteCopy, aboutPage: { ...content.siteCopy.aboutPage, values } },
+                          });
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 p-6">
+            <h2 className="mb-4 font-heading text-xl">Contact page</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {field(
+                "Hero eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.heroEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, heroEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Hero title",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.heroTitle}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, heroTitle: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Hero description",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.contactPage.heroDescription}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, heroDescription: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {field(
+                "Direct lines eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.directLinesEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, directLinesEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Direct lines headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.directLinesHeadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, directLinesHeadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Office section headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.officeHeadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, officeHeadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {field(
+                "Form eyebrow",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.formEyebrow}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, formEyebrow: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+              {field(
+                "Form headline",
+                <input
+                  className={inputClass}
+                  value={content.siteCopy.contactPage.formHeadline}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, formHeadline: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="mt-4">
+              {field(
+                "Form description",
+                <textarea
+                  className={inputClass}
+                  rows={2}
+                  value={content.siteCopy.contactPage.formDescription}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      siteCopy: {
+                        ...content.siteCopy,
+                        contactPage: { ...content.siteCopy.contactPage, formDescription: e.target.value },
+                      },
+                    })
+                  }
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {tab === "Services" && (
         <div className="space-y-10">
           {content.services.map((service, i) => (
@@ -312,22 +1090,64 @@ export default function AdminPage() {
 
       {tab === "Projects" && (
         <div className="space-y-10">
+          <button
+            onClick={() => {
+              const name = "New Project";
+              let slug = slugify(name);
+              const existing = new Set(content.projects.map((p) => p.slug));
+              let n = 2;
+              while (existing.has(slug)) {
+                slug = `${slugify(name)}-${n}`;
+                n += 1;
+              }
+              const placeholder = "/images/hero.jpg";
+              const newProject: Project = {
+                slug,
+                name,
+                category: "Corporate",
+                location: "",
+                description: "",
+                featured: false,
+                cover: placeholder,
+                images: [placeholder],
+              };
+              setContent({ ...content, projects: [newProject, ...content.projects] });
+            }}
+            className="rounded-md border border-neutral-900 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-900 hover:text-white"
+          >
+            + Add project
+          </button>
+
           {content.projects.map((project, i) => (
             <div key={project.slug} className="rounded-xl border border-neutral-200 p-6">
               <div className="flex items-center justify-between">
-                <h2 className="font-heading text-xl">{project.name}</h2>
-                <label className="flex items-center gap-2 text-sm text-neutral-600">
-                  <input
-                    type="checkbox"
-                    checked={Boolean(project.featured)}
-                    onChange={(e) => {
-                      const projects = [...content.projects];
-                      projects[i] = { ...project, featured: e.target.checked };
-                      setContent({ ...content, projects });
+                <h2 className="font-heading text-xl">{project.name || "Untitled project"}</h2>
+                <div className="flex items-center gap-4">
+                  <label className="flex items-center gap-2 text-sm text-neutral-600">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(project.featured)}
+                      onChange={(e) => {
+                        const projects = [...content.projects];
+                        projects[i] = { ...project, featured: e.target.checked };
+                        setContent({ ...content, projects });
+                      }}
+                    />
+                    Featured
+                  </label>
+                  <button
+                    onClick={() => {
+                      if (!confirm(`Delete "${project.name}"? This can't be undone.`)) return;
+                      setContent({
+                        ...content,
+                        projects: content.projects.filter((_, k) => k !== i),
+                      });
                     }}
-                  />
-                  Featured
-                </label>
+                    className="text-sm text-red-600 hover:underline"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {field(
@@ -381,6 +1201,22 @@ export default function AdminPage() {
               </div>
 
               <div className="mt-4">
+                {field(
+                  "Description / caption (shown on the homepage carousel and gallery)",
+                  <textarea
+                    className={inputClass}
+                    rows={2}
+                    value={project.description ?? ""}
+                    onChange={(e) => {
+                      const projects = [...content.projects];
+                      projects[i] = { ...project, description: e.target.value };
+                      setContent({ ...content, projects });
+                    }}
+                  />
+                )}
+              </div>
+
+              <div className="mt-4">
                 <ImageUploader
                   label="Cover image"
                   value={project.cover}
@@ -400,18 +1236,20 @@ export default function AdminPage() {
                   {project.images.map((img, j) => (
                     <div key={j} className="relative h-20 w-28 overflow-hidden rounded-md border border-neutral-200">
                       <Image src={img} alt="" fill sizes="112px" className="object-cover" />
-                      <button
-                        onClick={() => {
-                          const projects = [...content.projects];
-                          const images = project.images.filter((_, k) => k !== j);
-                          projects[i] = { ...project, images };
-                          setContent({ ...content, projects });
-                        }}
-                        className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/70 text-xs text-white"
-                        aria-label="Remove image"
-                      >
-                        ×
-                      </button>
+                      {project.images.length > 1 && (
+                        <button
+                          onClick={() => {
+                            const projects = [...content.projects];
+                            const images = project.images.filter((_, k) => k !== j);
+                            projects[i] = { ...project, images };
+                            setContent({ ...content, projects });
+                          }}
+                          className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/70 text-xs text-white"
+                          aria-label="Remove image"
+                        >
+                          ×
+                        </button>
+                      )}
                     </div>
                   ))}
                 </div>

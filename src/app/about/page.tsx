@@ -5,7 +5,8 @@ import { CredentialsSection } from "@/components/CredentialsSection";
 import { AssociatesStrip } from "@/components/AssociatesStrip";
 import { CTABanner } from "@/components/CTABanner";
 import { Reveal } from "@/components/Reveal";
-import { ValuesGrid, type Value } from "@/components/ValuesGrid";
+import { ValuesGrid } from "@/components/ValuesGrid";
+import { siteCopy } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -13,36 +14,16 @@ export const metadata: Metadata = {
     "AGI is a B-BBEE Level 2, CIDB registered aluminium, drywall and ceiling contractor with 30+ years delivering large-scale fit-outs for hospitals, corporates and national retailers across South Africa.",
 };
 
-const values: Value[] = [
-  {
-    icon: "award",
-    title: "Three Decades of Technical Craft",
-    text: "30+ years fabricating and installing aluminium, glazing, drywall and ceiling systems — expertise that shows in the detailing, not just the finish.",
-  },
-  {
-    icon: "target",
-    title: "Precision Over Shortcuts",
-    text: "Tolerances, fixings and finishes checked against spec at every stage, not just before client walkthroughs.",
-  },
-  {
-    icon: "users",
-    title: "One Point of Accountability",
-    text: "A single project lead owns your scope end-to-end, across every trade involved in the fit-out.",
-  },
-  {
-    icon: "map-pin",
-    title: "Compliance-Ready",
-    text: "B-BBEE Level 2, CIDB registered and SAGGA affiliated — procurement can clear us without delay.",
-  },
-];
+const { aboutPage } = siteCopy;
+const values = aboutPage.values;
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About AGI"
-        title="30 years of getting the detail right"
-        description="B-BBEE Level 2. CIDB registered. Three decades of hands-on experience in aluminium, glazing, drywall and ceiling systems."
+        eyebrow={aboutPage.heroEyebrow}
+        title={aboutPage.heroTitle}
+        description={aboutPage.heroDescription}
         image="/images/projects/mmamethalke-hospital-1.jpg"
       />
 
@@ -75,24 +56,16 @@ export default function AboutPage() {
           <Reveal delay={0.1}>
             <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium">
               <span className="label-mark" />
-              Our Story
+              {aboutPage.storyEyebrow}
             </p>
             <h2 className="mt-6 font-heading text-4xl font-light leading-tight text-charcoal sm:text-5xl">
-              Three decades of hands-on fit-out experience.
+              {aboutPage.storyHeadline}
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-graphite">
-              AGI has spent thirty years fabricating and installing
-              aluminium, glazing, drywall and ceiling systems across South
-              Africa. We check tolerances on site, specify fixings properly
-              the first time, and use finishes that still hold up well
-              after handover, not just on the day of the walkthrough.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-graphite">
-              Our teams have worked on hospital wards, university campuses,
-              an airline&rsquo;s head office and national retail rollouts,
-              often on sites where a missed deadline simply wasn&rsquo;t an
-              option.
-            </p>
+            {aboutPage.storyParagraphs.map((p, i) => (
+              <p key={i} className="mt-6 text-base leading-relaxed text-graphite first:mt-6 [&:not(:first-child)]:mt-4">
+                {p}
+              </p>
+            ))}
           </Reveal>
         </div>
       </section>
@@ -102,10 +75,10 @@ export default function AboutPage() {
           <Reveal>
             <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium">
               <span className="label-mark" />
-              What Sets Us Apart
+              {aboutPage.valuesEyebrow}
             </p>
             <h2 className="mt-6 max-w-xl font-heading text-4xl font-light leading-tight text-charcoal sm:text-5xl">
-              What clients notice first.
+              {aboutPage.valuesHeadline}
             </h2>
           </Reveal>
 
