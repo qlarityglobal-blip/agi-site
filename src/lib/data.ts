@@ -1,3 +1,5 @@
+import siteContent from "@/content/site.json";
+
 export type Service = {
   slug: string;
   name: string;
@@ -8,96 +10,6 @@ export type Service = {
   image: string;
   items: string[];
 };
-
-export const services: Service[] = [
-  {
-    slug: "aluminium",
-    name: "Aluminium",
-    summary:
-      "Precision-fabricated aluminium systems for shopfronts, offices and facades.",
-    intro:
-      "AGI fabricates and installs aluminium systems for shopfronts, office partitions, curtain walling and automatic doors across South Africa. Every profile is measured and cut to spec on site, so glazing lines run true and doors operate smoothly for years, not just at handover. We work directly with architects, project managers and retail rollout teams to keep aluminium installs on programme alongside the rest of the fit-out.",
-    metaTitle: "Aluminium Partitioning & Shopfront Contractor",
-    metaDescription:
-      "AGI fabricates and installs aluminium partitioning, curtain walling, shopfronts and automatic doors for corporate, retail and medical projects across South Africa. B-BBEE Level 2, CIDB registered.",
-    image: "/images/projects/comair-1.jpg",
-    items: [
-      "Partitioning & dividers",
-      "Curtain walling",
-      "Shopfronts",
-      "Doors & windows",
-      "Automatic sliding doors",
-    ],
-  },
-  {
-    slug: "dry-walling",
-    name: "Dry Walling",
-    summary:
-      "Fast, clean-build partitioning systems for commercial and medical spaces.",
-    intro:
-      "Our dry walling teams build partitions, acoustic walls, fire-rated systems and moisture-resistant boards for offices, hospitals, schools and retail spaces. We size teams to the programme, which is how we run several dry walling sites at once without slowing any of them down. Every partition is built to the fire and acoustic rating specified for that space.",
-    metaTitle: "Dry Walling & Partitioning Contractor",
-    metaDescription:
-      "Commercial dry walling contractor delivering partitions, acoustic walls, firestops and moisture-resistant systems for offices, hospitals and retail across South Africa. B-BBEE Level 2, CIDB registered.",
-    image: "/images/projects/drywalling.jpg",
-    items: [
-      "Partitions",
-      "Specialised acoustic partitions",
-      "Wall paneling",
-      "Firestops",
-      "Security doors",
-      "Moisture resistant systems",
-    ],
-  },
-  {
-    slug: "ceilings",
-    name: "Ceilings",
-    summary: "Suspended and acoustic ceiling systems built for scale and finish.",
-    intro:
-      "AGI installs suspended ceilings, bulkheads and acoustic ceiling systems designed to hide services cleanly and meet the acoustic requirements of the space below. From open-plan offices to hospital wards and lecture theatres, our ceiling teams work to tight tolerances so grid lines stay straight and access panels sit flush.",
-    metaTitle: "Suspended Ceiling & Bulkhead Contractor",
-    metaDescription:
-      "Suspended ceilings, bulkheads and acoustic ceiling systems for corporate, healthcare and education projects across South Africa. B-BBEE Level 2, CIDB registered contractor.",
-    image: "/images/projects/university-mpumalanga-2.jpg",
-    items: ["Suspended ceilings", "Bulkheads", "Acoustic ceilings"],
-  },
-  {
-    slug: "glazing",
-    name: "Glazing",
-    summary: "Glass partitioning and shopfront glazing for a premium finish.",
-    intro:
-      "Glass partitioning and shopfront glazing form a large part of our workload, from single-office glass walls to full mall storefronts. We size and install glass to the safety and load specifications of the space, and pair it with aluminium framing systems fabricated in-house for a consistent finish.",
-    metaTitle: "Glass Partitioning & Shopfront Glazing",
-    metaDescription:
-      "Glazing contractor delivering office glass partitions, shopfront glazing and aluminium glass doors for retail and corporate projects across South Africa. B-BBEE Level 2, CIDB registered.",
-    image: "/images/projects/somerset-mall-2.jpg",
-    items: ["Office partitions", "Shopfronts", "Aluminium doors"],
-  },
-  {
-    slug: "carpentry",
-    name: "Carpentry",
-    summary: "Custom wooden joinery for partitions, doors and shopfronts.",
-    intro:
-      "Our carpentry team builds and installs custom wooden partitions, doors, frames and shopfronts where timber is the right material for the brief. Every piece is measured and built for the specific opening rather than off a generic template, which is why fit and finish hold up on site.",
-    metaTitle: "Commercial Carpentry & Joinery Contractor",
-    metaDescription:
-      "Custom carpentry for wooden partitions, doors, frames and shopfronts on commercial fit-out projects across South Africa. B-BBEE Level 2, CIDB registered contractor.",
-    image: "/images/projects/carpentry.jpg",
-    items: ["Partitioning & dividers", "Wooden doors & frames", "Wooden shopfronts"],
-  },
-  {
-    slug: "turnkey",
-    name: "Turnkey Projects",
-    summary: "End-to-end interior fit-out, managed from concept to handover.",
-    intro:
-      "For projects that need every trade coordinated under one contract, AGI runs turnkey fit-outs from concept through to handover: aluminium, glazing, dry walling, ceilings and carpentry managed by a single project lead. This is the model we use most often on corporate, medical and national retail rollouts, where one point of accountability keeps the programme on track.",
-    metaTitle: "Turnkey Interior Fit-Out Contractor",
-    metaDescription:
-      "End-to-end turnkey interior fit-outs for corporate, medical and residential projects across South Africa, with one project lead coordinating every trade. B-BBEE Level 2, CIDB registered.",
-    image: "/images/projects/mmamethalke-hospital-2.jpg",
-    items: ["Corporate", "Medical", "Residential", "Construction"],
-  },
-];
 
 export type Project = {
   slug: string;
@@ -110,147 +22,6 @@ export type Project = {
   images: string[];
 };
 
-export const projects: Project[] = [
-  {
-    slug: "university-of-mpumalanga",
-    name: "University of Mpumalanga",
-    category: "Education",
-    location: "Mbombela, Mpumalanga",
-    featured: true,
-    cover: "/images/projects/university-mpumalanga-1.jpg",
-    images: [
-      "/images/projects/university-mpumalanga-1.jpg",
-      "/images/projects/university-mpumalanga-2.jpg",
-      "/images/projects/university-mpumalanga-3.jpg",
-      "/images/projects/university-mpumalanga-4.jpg",
-    ],
-  },
-  {
-    slug: "steve-tshwete-hospital",
-    name: "Steve Tshwete Hospital",
-    category: "Healthcare",
-    location: "Middelburg, Mpumalanga",
-    note: "Main contractor: ENZA Construction",
-    featured: true,
-    cover: "/images/projects/steve-tshwete-hospital-1.jpg",
-    images: [
-      "/images/projects/steve-tshwete-hospital-1.jpg",
-      "/images/projects/steve-tshwete-hospital-2.jpg",
-      "/images/projects/steve-tshwete-hospital-3.jpg",
-      "/images/projects/steve-tshwete-hospital-4.jpg",
-    ],
-  },
-  {
-    slug: "mmamethalke-hospital",
-    name: "Mmamethalke Hospital",
-    category: "Healthcare",
-    location: "Limpopo",
-    note: "Main contractor: Clear Choice Builders",
-    cover: "/images/projects/mmamethalke-hospital-1.jpg",
-    images: [
-      "/images/projects/mmamethalke-hospital-1.jpg",
-      "/images/projects/mmamethalke-hospital-2.jpg",
-      "/images/projects/mmamethalke-hospital-3.jpg",
-      "/images/projects/mmamethalke-hospital-4.jpg",
-    ],
-  },
-  {
-    slug: "baragwaneth-hospital",
-    name: "Baragwaneth Hospital",
-    category: "Healthcare",
-    location: "Soweto, Johannesburg",
-    cover: "/images/projects/baragwaneth-hospital.jpg",
-    images: ["/images/projects/baragwaneth-hospital.jpg"],
-  },
-  {
-    slug: "comair",
-    name: "Comair",
-    category: "Corporate",
-    location: "Kempton Park, Johannesburg",
-    featured: true,
-    cover: "/images/projects/comair-1.jpg",
-    images: [
-      "/images/projects/comair-1.jpg",
-      "/images/projects/comair-2.jpg",
-      "/images/projects/comair-3.jpg",
-      "/images/projects/comair-4.jpg",
-    ],
-  },
-  {
-    slug: "kathrine-towers",
-    name: "Kathrine Towers",
-    category: "Corporate",
-    location: "Johannesburg",
-    cover: "/images/projects/kathrine-towers-1.jpg",
-    images: [
-      "/images/projects/kathrine-towers-1.jpg",
-      "/images/projects/kathrine-towers-2.jpg",
-      "/images/projects/kathrine-towers-3.jpg",
-      "/images/projects/kathrine-towers-4.jpg",
-    ],
-  },
-  {
-    slug: "somerset-mall",
-    name: "Somerset Mall",
-    category: "Retail",
-    location: "Somerset West, Cape Town",
-    featured: true,
-    cover: "/images/projects/somerset-mall-2.jpg",
-    images: [
-      "/images/projects/somerset-mall-2.jpg",
-      "/images/projects/somerset-mall-3.jpg",
-      "/images/projects/somerset-mall-4.jpg",
-    ],
-  },
-  {
-    slug: "dwarsloop-mall",
-    name: "Dwarsloop Mall",
-    category: "Retail",
-    location: "Bushbuckridge, Mpumalanga",
-    cover: "/images/projects/dwarsloop-mall-1.jpg",
-    images: [
-      "/images/projects/dwarsloop-mall-1.jpg",
-      "/images/projects/dwarsloop-mall-2.jpg",
-      "/images/projects/dwarsloop-mall-3.jpg",
-      "/images/projects/dwarsloop-mall-4.jpg",
-    ],
-  },
-  {
-    slug: "maranatha-church",
-    name: "Maranatha Church",
-    category: "Community",
-    location: "Johannesburg",
-    cover: "/images/projects/maranatha-church-1.jpg",
-    images: [
-      "/images/projects/maranatha-church-1.jpg",
-      "/images/projects/maranatha-church-2.jpg",
-      "/images/projects/maranatha-church-3.jpg",
-      "/images/projects/maranatha-church-4.jpg",
-    ],
-  },
-  {
-    slug: "residential",
-    name: "Various Residentials",
-    category: "Residential",
-    location: "Nationwide",
-    cover: "/images/projects/residential-1.jpg",
-    images: [
-      "/images/projects/residential-1.jpg",
-      "/images/projects/residential-2.jpg",
-      "/images/projects/residential-3.jpg",
-      "/images/projects/residential-4.jpg",
-    ],
-  },
-];
-
-export const associates = [
-  { name: "Central Supplier Database", logo: "/images/associates/central-supplier-database.jpg" },
-  { name: "SAGGA", logo: "/images/associates/sagga.jpg" },
-  { name: "CIDB", logo: "/images/associates/cidb.jpg" },
-  { name: "Sabisa", logo: "/images/associates/sabisa.jpg" },
-  { name: "Buildmart", logo: "/images/associates/buildmart.jpg" },
-];
-
 export type Credential = {
   slug: string;
   title: string;
@@ -258,39 +29,22 @@ export type Credential = {
   detail: string;
 };
 
-export const credentials: Credential[] = [
-  {
-    slug: "bbbee",
-    title: "B-BBEE Level 2 Contributor",
-    short: "125% procurement recognition",
-    detail:
-      "AGI is a B-BBEE Level 2 Contributor, giving procurement teams 125% B-BBEE recognition on spend — a direct advantage on government, parastatal and corporate tenders with transformation scorecards.",
-  },
-  {
-    slug: "cidb",
-    title: "CIDB Registered",
-    short: "Construction Industry Development Board",
-    detail:
-      "Registered with the CIDB, meeting the compliance and grading requirements to tender for and deliver public and private sector construction work across South Africa.",
-  },
-  {
-    slug: "sagga",
-    title: "SAGGA Affiliated",
-    short: "South African Glass & Glazing Association",
-    detail:
-      "Affiliated with SAGGA, holding our aluminium and glazing installations to recognised industry standards for safety and workmanship.",
-  },
-];
-
-export const contact = {
-  address: "Unit 4B, 23 New Goch Road, Benrose, 2094, Johannesburg, South Africa",
-  phones: [
-    { label: "Johannesburg", number: "087 094 6843" },
-    { label: "Cape Town", number: "083 260 4101" },
-    { label: "Polokwane", number: "083 379 2885" },
-  ],
-  email: "admin@agidrywall.co.za",
+export type Associate = {
+  name: string;
+  logo: string;
 };
+
+export type Contact = {
+  address: string;
+  phones: { label: string; number: string }[];
+  email: string;
+};
+
+export const services: Service[] = siteContent.services;
+export const projects: Project[] = siteContent.projects;
+export const credentials: Credential[] = siteContent.credentials;
+export const associates: Associate[] = siteContent.associates;
+export const contact: Contact = siteContent.contact;
 
 export const nav = [
   { href: "/", label: "Home" },

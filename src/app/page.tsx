@@ -8,11 +8,9 @@ import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { AssociatesStrip } from "@/components/AssociatesStrip";
 import { CTABanner } from "@/components/CTABanner";
 import { Reveal } from "@/components/Reveal";
-import { getProjects } from "@/lib/content";
+import { projects } from "@/lib/data";
 
-export default async function Home() {
-  const projects = await getProjects();
-
+export default function Home() {
   return (
     <>
       <Hero />

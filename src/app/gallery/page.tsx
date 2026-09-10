@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CTABanner } from "@/components/CTABanner";
 import { GalleryFiltered } from "@/components/GalleryFiltered";
-import { getProjects } from "@/lib/content";
+import { projects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Project Gallery",
@@ -10,9 +10,7 @@ export const metadata: Metadata = {
     "Completed aluminium, drywall and ceiling fit-out projects for Comair, University of Mpumalanga, provincial hospitals, Somerset Mall and national retailers across South Africa.",
 };
 
-export default async function GalleryPage() {
-  const projects = await getProjects();
-
+export default function GalleryPage() {
   return (
     <>
       <PageHero
