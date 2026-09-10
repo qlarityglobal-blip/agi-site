@@ -174,6 +174,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<Tab>("Services");
   const [status, setStatus] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [publishing, setPublishing] = useState(false);
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -203,9 +204,39 @@ export default function AdminPage() {
     setTimeout(() => setStatus(""), 4000);
   }
 
+  async function publish() {
+    if (!content) return;
+    setPublishing(true);
+    setStatus("Saving…");
+    const saveRes = await fetch("/api/admin/content", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(content),
+    });
+    if (!saveRes.ok) {
+      const data = await saveRes.json();
+      setStatus("");
+      setError(data.error || "Save failed");
+      setPublishing(false);
+      return;
+    }
+
+    setStatus("Publishing to the live site…");
+    const publishRes = await fetch("/api/admin/publish", { method: "POST" });
+    const data = await publishRes.json();
+    if (publishRes.ok) {
+      setStatus(data.message || "Published.");
+    } else {
+      setStatus("");
+      alert(data.error || "Publish failed. Ask Claude Code to check git status/credentials.");
+    }
+    setPublishing(false);
+    setTimeout(() => setStatus(""), 6000);
+  }
+
   if (error) {
     return (
-      <div className="mx-auto max-w-2xl px-6 py-24 text-center">
+      <div className="mx-auto max-w-2xl px-6 pb-24 pt-32 text-center">
         <h1 className="font-heading text-2xl">Editor unavailable</h1>
         <p className="mt-3 text-neutral-600">{error}</p>
         <p className="mt-3 text-sm text-neutral-500">
@@ -217,26 +248,34 @@ export default function AdminPage() {
   }
 
   if (!content) {
-    return <div className="px-6 py-24 text-center text-neutral-500">Loading…</div>;
+    return <div className="px-6 pb-24 pt-32 text-center text-neutral-500">Loading…</div>;
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto max-w-5xl px-6 pb-16 pt-28 sm:pt-32">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 pb-6">
         <div>
           <h1 className="font-heading text-3xl">AGI Content Editor</h1>
           <p className="mt-1 text-sm text-neutral-500">
-            Local editor — edits write straight to the site files on this machine. Commit and
-            push to deploy the changes live.
+            <strong>Save changes</strong> writes to this computer only — nothing on the live site
+            changes yet. <strong>Publish to live site</strong> saves and pushes it live (takes a
+            minute or two to go out).
           </p>
         </div>
         <div className="flex items-center gap-3">
           {status && <span className="text-sm text-neutral-600">{status}</span>}
           <button
             onClick={save}
-            className="rounded-md bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700"
+            className="rounded-md border border-neutral-300 px-5 py-2.5 text-sm font-medium text-neutral-700 hover:border-neutral-900"
           >
             Save changes
+          </button>
+          <button
+            onClick={publish}
+            disabled={publishing}
+            className="rounded-md bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700 disabled:opacity-60"
+          >
+            {publishing ? "Publishing…" : "Publish to live site"}
           </button>
         </div>
       </div>
