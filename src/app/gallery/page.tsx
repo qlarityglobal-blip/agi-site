@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CTABanner } from "@/components/CTABanner";
 import { GalleryFiltered } from "@/components/GalleryFiltered";
+import { getProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Project Gallery",
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
     "Completed aluminium, drywall and ceiling fit-out projects for Comair, University of Mpumalanga, provincial hospitals, Somerset Mall and national retailers across South Africa.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const projects = await getProjects();
+
   return (
     <>
       <PageHero
@@ -19,8 +22,8 @@ export default function GalleryPage() {
         image="/images/projects/university-mpumalanga-3.jpg"
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-        <GalleryFiltered />
+      <section className="mx-auto max-w-6xl px-6 py-24 lg:px-10 lg:py-32">
+        <GalleryFiltered projects={projects} />
       </section>
 
       <CTABanner />

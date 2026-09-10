@@ -25,15 +25,6 @@ const icons: Record<string, ComponentType<{ size?: number; className?: string }>
   turnkey: KeyRound,
 };
 
-const images: Record<string, string> = {
-  aluminium: "/images/projects/comair-1.jpg",
-  "dry-walling": "/images/projects/drywalling.jpg",
-  ceilings: "/images/projects/university-mpumalanga-2.jpg",
-  glazing: "/images/projects/somerset-mall-2.jpg",
-  carpentry: "/images/projects/carpentry.jpg",
-  turnkey: "/images/projects/mmamethalke-hospital-2.jpg",
-};
-
 export function ServicesGrid({ compact = false }: { compact?: boolean }) {
   const list = compact ? services.slice(0, 6) : services;
 
@@ -44,8 +35,8 @@ export function ServicesGrid({ compact = false }: { compact?: boolean }) {
         return (
           <motion.div key={service.slug} variants={revealItem} initial="rest" whileHover="hover">
             <Link
-              href={`/services#${service.slug}`}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/40 hover:shadow-[0_24px_60px_-24px_rgba(10,31,56,0.35)]"
+              href={`/services/${service.slug}`}
+              className="group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-white p-8 transition duration-300 hover:border-charcoal/30"
             >
               <motion.div
                 variants={{ rest: { opacity: 0, scale: 1.1 }, hover: { opacity: 1, scale: 1 } }}
@@ -53,7 +44,7 @@ export function ServicesGrid({ compact = false }: { compact?: boolean }) {
                 className="absolute inset-0"
               >
                 <Image
-                  src={images[service.slug]}
+                  src={service.image}
                   alt=""
                   fill
                   sizes="360px"
@@ -81,7 +72,7 @@ export function ServicesGrid({ compact = false }: { compact?: boolean }) {
 
               <motion.h3
                 variants={{ rest: { color: "var(--color-charcoal)" }, hover: { color: "#ffffff" } }}
-                className="relative mt-6 font-heading text-xl font-semibold"
+                className="relative mt-6 font-heading text-xl font-medium"
               >
                 {service.name}
               </motion.h3>

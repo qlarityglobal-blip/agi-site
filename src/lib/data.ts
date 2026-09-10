@@ -2,6 +2,10 @@ export type Service = {
   slug: string;
   name: string;
   summary: string;
+  intro: string;
+  metaTitle: string;
+  metaDescription: string;
+  image: string;
   items: string[];
 };
 
@@ -11,6 +15,12 @@ export const services: Service[] = [
     name: "Aluminium",
     summary:
       "Precision-fabricated aluminium systems for shopfronts, offices and facades.",
+    intro:
+      "AGI fabricates and installs aluminium systems for shopfronts, office partitions, curtain walling and automatic doors across South Africa. Every profile is measured and cut to spec on site, so glazing lines run true and doors operate smoothly for years, not just at handover. We work directly with architects, project managers and retail rollout teams to keep aluminium installs on programme alongside the rest of the fit-out.",
+    metaTitle: "Aluminium Partitioning & Shopfront Contractor",
+    metaDescription:
+      "AGI fabricates and installs aluminium partitioning, curtain walling, shopfronts and automatic doors for corporate, retail and medical projects across South Africa. B-BBEE Level 2, CIDB registered.",
+    image: "/images/projects/comair-1.jpg",
     items: [
       "Partitioning & dividers",
       "Curtain walling",
@@ -24,6 +34,12 @@ export const services: Service[] = [
     name: "Dry Walling",
     summary:
       "Fast, clean-build partitioning systems for commercial and medical spaces.",
+    intro:
+      "Our dry walling teams build partitions, acoustic walls, fire-rated systems and moisture-resistant boards for offices, hospitals, schools and retail spaces. We size teams to the programme, which is how we run several dry walling sites at once without slowing any of them down. Every partition is built to the fire and acoustic rating specified for that space.",
+    metaTitle: "Dry Walling & Partitioning Contractor",
+    metaDescription:
+      "Commercial dry walling contractor delivering partitions, acoustic walls, firestops and moisture-resistant systems for offices, hospitals and retail across South Africa. B-BBEE Level 2, CIDB registered.",
+    image: "/images/projects/drywalling.jpg",
     items: [
       "Partitions",
       "Specialised acoustic partitions",
@@ -37,24 +53,48 @@ export const services: Service[] = [
     slug: "ceilings",
     name: "Ceilings",
     summary: "Suspended and acoustic ceiling systems built for scale and finish.",
+    intro:
+      "AGI installs suspended ceilings, bulkheads and acoustic ceiling systems designed to hide services cleanly and meet the acoustic requirements of the space below. From open-plan offices to hospital wards and lecture theatres, our ceiling teams work to tight tolerances so grid lines stay straight and access panels sit flush.",
+    metaTitle: "Suspended Ceiling & Bulkhead Contractor",
+    metaDescription:
+      "Suspended ceilings, bulkheads and acoustic ceiling systems for corporate, healthcare and education projects across South Africa. B-BBEE Level 2, CIDB registered contractor.",
+    image: "/images/projects/university-mpumalanga-2.jpg",
     items: ["Suspended ceilings", "Bulkheads", "Acoustic ceilings"],
   },
   {
     slug: "glazing",
     name: "Glazing",
     summary: "Glass partitioning and shopfront glazing for a premium finish.",
+    intro:
+      "Glass partitioning and shopfront glazing form a large part of our workload, from single-office glass walls to full mall storefronts. We size and install glass to the safety and load specifications of the space, and pair it with aluminium framing systems fabricated in-house for a consistent finish.",
+    metaTitle: "Glass Partitioning & Shopfront Glazing",
+    metaDescription:
+      "Glazing contractor delivering office glass partitions, shopfront glazing and aluminium glass doors for retail and corporate projects across South Africa. B-BBEE Level 2, CIDB registered.",
+    image: "/images/projects/somerset-mall-2.jpg",
     items: ["Office partitions", "Shopfronts", "Aluminium doors"],
   },
   {
     slug: "carpentry",
     name: "Carpentry",
     summary: "Custom wooden joinery for partitions, doors and shopfronts.",
+    intro:
+      "Our carpentry team builds and installs custom wooden partitions, doors, frames and shopfronts where timber is the right material for the brief. Every piece is measured and built for the specific opening rather than off a generic template, which is why fit and finish hold up on site.",
+    metaTitle: "Commercial Carpentry & Joinery Contractor",
+    metaDescription:
+      "Custom carpentry for wooden partitions, doors, frames and shopfronts on commercial fit-out projects across South Africa. B-BBEE Level 2, CIDB registered contractor.",
+    image: "/images/projects/carpentry.jpg",
     items: ["Partitioning & dividers", "Wooden doors & frames", "Wooden shopfronts"],
   },
   {
     slug: "turnkey",
     name: "Turnkey Projects",
     summary: "End-to-end interior fit-out, managed from concept to handover.",
+    intro:
+      "For projects that need every trade coordinated under one contract, AGI runs turnkey fit-outs from concept through to handover: aluminium, glazing, dry walling, ceilings and carpentry managed by a single project lead. This is the model we use most often on corporate, medical and national retail rollouts, where one point of accountability keeps the programme on track.",
+    metaTitle: "Turnkey Interior Fit-Out Contractor",
+    metaDescription:
+      "End-to-end turnkey interior fit-outs for corporate, medical and residential projects across South Africa, with one project lead coordinating every trade. B-BBEE Level 2, CIDB registered.",
+    image: "/images/projects/mmamethalke-hospital-2.jpg",
     items: ["Corporate", "Medical", "Residential", "Construction"],
   },
 ];
@@ -201,11 +241,6 @@ export const projects: Project[] = [
       "/images/projects/residential-4.jpg",
     ],
   },
-];
-
-export const projectCategories = [
-  "All",
-  ...Array.from(new Set(projects.map((p) => p.category))),
 ];
 
 export const associates = [

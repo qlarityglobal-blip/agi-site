@@ -28,16 +28,14 @@ export default function ContactPage() {
         image="/images/projects/somerset-mall-2.jpg"
       />
 
-      <section className="relative overflow-hidden bg-charcoal py-20">
-        <div className="absolute inset-0 bg-mesh" />
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+      <section className="bg-charcoal py-20">
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
           <Reveal>
-            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-bronze">
-              <span className="h-px w-10 bg-bronze" />
+            <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium-light">
+              <span className="label-mark" />
               Direct Lines
             </p>
-            <h2 className="mt-4 max-w-xl font-heading text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-4 max-w-xl font-heading text-4xl font-light text-white sm:text-5xl">
               Call your nearest team
             </h2>
           </Reveal>
@@ -46,18 +44,18 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <section className="mx-auto max-w-6xl px-6 py-24 lg:px-10 lg:py-32">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr]">
           <Reveal>
-            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-bronze">
-              <span className="h-px w-10 bg-bronze" />
+            <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium">
+              <span className="label-mark" />
               Head Office
             </p>
-            <h2 className="mt-6 font-heading text-3xl font-semibold text-charcoal sm:text-4xl">
+            <h2 className="mt-6 font-heading text-3xl font-light text-charcoal sm:text-4xl">
               Unit 4B, New Goch Road
             </h2>
             <div className="mt-6 flex gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted text-bronze">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted text-charcoal">
                 <MapPin size={20} />
               </span>
               <p className="text-sm leading-relaxed text-graphite">{contact.address}</p>
@@ -76,11 +74,11 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-border bg-white p-8 sm:p-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-bronze">
+            <div className="rounded-2xl border border-border bg-muted p-8 sm:p-10">
+              <p className="text-xs uppercase tracking-[0.2em] text-aluminium">
                 Prefer to write instead?
               </p>
-              <h3 className="mt-3 font-heading text-2xl font-semibold text-charcoal">
+              <h3 className="mt-3 font-heading text-2xl font-light text-charcoal">
                 Send us your project details
               </h3>
               <p className="mt-2 text-sm text-graphite">

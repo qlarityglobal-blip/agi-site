@@ -1,59 +1,62 @@
 @import "tailwindcss";
 
 /*
-  Brand palette (matches AGI logo: navy wordmark, teal building mark, icy-blue field).
-  Token names kept from the original build for minimal churn — mapping:
-  charcoal      -> deep navy (primary dark / hero / footer)
-  charcoal-soft -> secondary navy (gradients, dark card surfaces)
-  graphite      -> navy-grey body text on light backgrounds
-  aluminium     -> steel blue-grey (muted text, borders on dark)
-  aluminium-light -> light steel (secondary text on dark)
-  bronze / bronze-dark -> teal accent / teal hover
-  cream / muted -> icy-blue page background / alternating section tint
+  AGI brand palette — deep navy, aluminium steel, and the teal from the
+  glazing mark in the logo. Token names kept stable across the codebase:
+  charcoal      -> deep navy (primary dark / hero / footer base)
+  charcoal-soft -> secondary navy surface (cards/panels on dark)
+  onyx          -> near-black, deepest layer (footer base)
+  graphite      -> body text on light backgrounds
+  aluminium     -> steel blue-grey, muted secondary text/borders
+  aluminium-light -> lighter steel, secondary text on dark surfaces
+  bronze / bronze-dark -> the AGI teal accent and its hover state
+  cream -> page background (cool white)
+  muted -> alternating section tint
 */
 :root {
-  --background: #f6fafc;
-  --foreground: #0a1f38;
+  --background: #f7fafc;
+  --foreground: #0b1e33;
 
-  --color-charcoal: #0a1f38;
-  --color-charcoal-soft: #123258;
-  --color-graphite: #34495f;
-  --color-aluminium: #7b93a8;
-  --color-aluminium-light: #c3d3e0;
-  --color-bronze: #1793ab;
-  --color-bronze-dark: #0f7488;
-  --color-cream: #f6fafc;
-  --color-muted: #eaf3f9;
-  --color-border: #dce7ee;
+  --color-charcoal: #0a1930;
+  --color-charcoal-soft: #12294a;
+  --color-onyx: #060d1a;
+  --color-graphite: #2c3b52;
+  --color-aluminium: #6f88a3;
+  --color-aluminium-light: #c3d3e2;
+  --color-bronze: #14a5c0;
+  --color-bronze-dark: #0d8299;
+  --color-cream: #f7fafc;
+  --color-muted: #eef4f8;
+  --color-border: #e0e8f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-charcoal: #0a1f38;
-  --color-charcoal-soft: #123258;
-  --color-graphite: #34495f;
-  --color-aluminium: #7b93a8;
-  --color-aluminium-light: #c3d3e0;
-  --color-bronze: #1793ab;
-  --color-bronze-dark: #0f7488;
-  --color-cream: #f6fafc;
-  --color-muted: #eaf3f9;
-  --color-border: #dce7ee;
+  --color-charcoal: #0a1930;
+  --color-charcoal-soft: #12294a;
+  --color-onyx: #060d1a;
+  --color-graphite: #2c3b52;
+  --color-aluminium: #6f88a3;
+  --color-aluminium-light: #c3d3e2;
+  --color-bronze: #14a5c0;
+  --color-bronze-dark: #0d8299;
+  --color-cream: #f7fafc;
+  --color-muted: #eef4f8;
+  --color-border: #e0e8f0;
 
-  --font-heading: var(--font-outfit);
-  --font-body: var(--font-work-sans);
+  --font-heading: var(--font-geist);
+  --font-body: var(--font-geist);
 
-  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-fade-in: fade-in 0.9s ease both;
-  --animate-marquee: marquee 32s linear infinite;
-  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 1s ease both;
+  --animate-marquee: marquee 36s linear infinite;
 
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -78,15 +81,6 @@
       transform: translateX(-50%);
     }
   }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
 }
 
 body {
@@ -97,6 +91,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), sans-serif;
+  letter-spacing: -0.015em;
 }
 
 ::selection {
@@ -104,29 +99,19 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Section label: small solid square preceding uppercase eyebrow text */
+.label-mark {
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-.bg-mesh {
-  background:
-    radial-gradient(60% 50% at 15% 10%, rgba(23, 147, 171, 0.35), transparent 60%),
-    radial-gradient(50% 45% at 85% 15%, rgba(23, 147, 171, 0.18), transparent 60%),
-    radial-gradient(70% 60% at 50% 100%, rgba(18, 50, 88, 0.9), transparent 70%);
-}
-
-.text-gradient {
-  background: linear-gradient(90deg, #ffffff 0%, #cfe9f0 60%, #6fd3e5 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Numbered index mark, e.g. "01" — used in project/service pagination */
+.index-mark {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {

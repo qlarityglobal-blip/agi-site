@@ -13,25 +13,23 @@ export function PageHero({
   image: string;
 }) {
   return (
-    <section className="relative flex min-h-[52vh] items-end overflow-hidden bg-charcoal pt-28">
+    <section className="relative flex min-h-[54vh] items-end overflow-hidden bg-charcoal pt-32">
       <Image
         src={image}
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-30"
+        className="object-cover opacity-35"
       />
-      <div className="absolute inset-0 bg-mesh" />
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-charcoal/30" />
-      <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 lg:px-10">
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-charcoal/20" />
+      <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 lg:px-10">
         <Reveal>
-          <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-bronze">
-            <span className="h-px w-10 bg-bronze" />
+          <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium-light">
+            <span className="label-mark" />
             {eyebrow}
           </p>
-          <h1 className="mt-6 max-w-2xl font-heading text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-2xl font-heading text-5xl font-light leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
             {title}
           </h1>
           {description && (

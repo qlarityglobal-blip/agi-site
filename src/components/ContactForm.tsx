@@ -108,7 +108,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="group inline-flex items-center justify-center gap-2 rounded-full bg-bronze px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-bronze-dark"
+        className="group inline-flex items-center justify-center gap-2 rounded-full bg-charcoal px-7 py-3.5 text-sm text-white transition hover:bg-charcoal-soft"
       >
         Send Enquiry
         <Send size={16} className="transition group-hover:translate-x-0.5" />
@@ -118,7 +118,7 @@ export function ContactForm() {
         <p className="text-sm text-graphite">
           Your email app should now be open with your enquiry ready to send. If it
           didn&rsquo;t open, email us directly at{" "}
-          <a href={`mailto:${contact.email}`} className="text-bronze underline">
+          <a href={`mailto:${contact.email}`} className="text-charcoal underline">
             {contact.email}
           </a>
           .

@@ -18,7 +18,7 @@ function TiltCard({
   ratio: string;
   onClick: () => void;
 }) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
   const spx = useSpring(px, { stiffness: 200, damping: 20 });
@@ -40,41 +40,45 @@ function TiltCard({
 
   return (
     <motion.button
-      ref={ref}
       variants={revealItem}
       onClick={onClick}
-      onMouseMove={handleMove}
-      onMouseLeave={reset}
-      style={{ rotateX, rotateY, transformPerspective: 800 }}
-      className={`group relative mb-6 block w-full break-inside-avoid overflow-hidden rounded-2xl bg-charcoal text-left shadow-lg transition-shadow duration-300 hover:shadow-2xl ${ratio}`}
+      className={`group relative mb-6 block w-full break-inside-avoid overflow-hidden rounded-[1.75rem] bg-charcoal text-left ${ratio}`}
     >
-      <Image
-        src={project.cover}
-        alt={project.name}
-        fill
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        className="object-cover transition duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/10 to-transparent opacity-80 transition group-hover:opacity-95" />
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMove}
+        onMouseLeave={reset}
+        style={{ rotateX, rotateY, transformPerspective: 800 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={project.cover}
+          alt={project.name}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/10 to-transparent opacity-80 transition group-hover:opacity-95" />
 
-      <span className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
-        <ArrowUpRight size={18} />
-      </span>
+        <span className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
+          <ArrowUpRight size={18} />
+        </span>
 
-      <div className="absolute inset-x-0 bottom-0 p-6">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-bronze">
-          {project.category}
-        </p>
-        <h3 className="mt-1 font-heading text-xl font-bold text-white sm:text-2xl">
-          {project.name}
-        </h3>
-        {project.location && (
-          <p className="mt-1 flex items-center gap-1 text-xs text-aluminium-light">
-            <MapPin size={12} />
-            {project.location}
+        <div className="absolute inset-x-0 bottom-0 p-6">
+          <p className="text-[11px] uppercase tracking-widest text-aluminium-light">
+            {project.category}
           </p>
-        )}
-      </div>
+          <h3 className="mt-1 font-heading text-xl font-medium text-white sm:text-2xl">
+            {project.name}
+          </h3>
+          {project.location && (
+            <p className="mt-1 flex items-center gap-1 text-xs text-aluminium-light">
+              <MapPin size={12} />
+              {project.location}
+            </p>
+          )}
+        </div>
+      </motion.div>
     </motion.button>
   );
 }
@@ -184,7 +188,7 @@ export function ProjectsShowcase({ list }: { list: Project[] }) {
                       <span
                         key={idx}
                         className={`h-1.5 w-1.5 rounded-full transition ${
-                          idx === imgIndex ? "bg-bronze" : "bg-white/40"
+                          idx === imgIndex ? "bg-white" : "bg-white/30"
                         }`}
                       />
                     ))}
@@ -193,10 +197,10 @@ export function ProjectsShowcase({ list }: { list: Project[] }) {
               )}
 
               <div className="mt-4 text-center text-white">
-                <p className="text-xs font-semibold uppercase tracking-widest text-bronze">
+                <p className="text-xs uppercase tracking-widest text-aluminium-light">
                   {active.category}
                 </p>
-                <h3 className="mt-1 font-heading text-xl font-semibold">{active.name}</h3>
+                <h3 className="mt-1 font-heading text-xl font-light">{active.name}</h3>
                 {active.location && (
                   <p className="mt-1 flex items-center justify-center gap-1 text-sm text-aluminium-light">
                     <MapPin size={13} />

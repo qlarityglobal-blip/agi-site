@@ -21,12 +21,12 @@ export function ValuesGrid({ values }: { values: Value[] }) {
           <motion.div
             key={v.title}
             variants={revealItem}
-            className="rounded-2xl border border-border bg-white p-8"
+            className="rounded-[1.5rem] border border-border bg-white p-8"
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-bronze">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cream text-charcoal">
               <Icon size={22} />
             </span>
-            <h3 className="mt-6 font-heading text-lg font-semibold text-charcoal">{v.title}</h3>
+            <h3 className="mt-6 font-heading text-lg font-medium text-charcoal">{v.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-graphite">{v.text}</p>
           </motion.div>
         );

@@ -9,16 +9,16 @@ const icons = { bbbee: Award, cidb: ShieldCheck, sagga: BadgeCheck };
 
 export function CredentialsSection() {
   return (
-    <section className="border-y border-border bg-charcoal py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section className="border-y border-white/10 bg-charcoal py-20 lg:py-24">
+      <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <Reveal>
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-bronze">
-                <span className="h-px w-10 bg-bronze" />
+              <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-aluminium-light">
+                <span className="label-mark" />
                 Compliance &amp; Standing
               </p>
-              <h2 className="mt-6 max-w-xl font-heading text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-6 max-w-xl font-heading text-4xl font-light text-white sm:text-5xl">
                 Cleared for tender. Built for scale.
               </h2>
             </div>
@@ -36,22 +36,14 @@ export function CredentialsSection() {
               <motion.div
                 key={c.slug}
                 variants={revealItem}
-                className={`rounded-2xl border p-8 ${
-                  c.slug === "bbbee"
-                    ? "border-bronze/50 bg-gradient-to-br from-bronze/15 to-transparent"
-                    : "border-white/10 bg-charcoal-soft/50"
-                }`}
+                className="rounded-2xl border border-white/10 bg-charcoal-soft p-8"
               >
-                <span
-                  className={`flex h-12 w-12 items-center justify-center rounded-xl ${
-                    c.slug === "bbbee" ? "bg-bronze text-white" : "bg-white/10 text-bronze"
-                  }`}
-                >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white">
                   <Icon size={22} />
                 </span>
-                <h3 className="mt-6 font-heading text-xl font-bold text-white">{c.title}</h3>
-                <p className="mt-1 text-sm font-semibold text-bronze">{c.short}</p>
-                <p className="mt-3 text-sm leading-relaxed text-aluminium-light">{c.detail}</p>
+                <h3 className="mt-6 font-heading text-xl font-medium text-white">{c.title}</h3>
+                <p className="mt-1 text-sm text-aluminium-light">{c.short}</p>
+                <p className="mt-3 text-sm leading-relaxed text-aluminium">{c.detail}</p>
               </motion.div>
             );
           })}

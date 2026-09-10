@@ -27,9 +27,8 @@ export function FloatingCTA() {
         >
           <Link
             href="/contact"
-            className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-bronze px-5 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-12px_rgba(31,147,171,0.8)] transition hover:bg-bronze-dark"
+            className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-charcoal px-5 py-3.5 text-sm text-white transition hover:bg-charcoal-soft"
           >
-            <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 transition group-hover:opacity-100" />
             <MessageSquareText size={18} />
             <span className="hidden sm:inline">Contact Us</span>
           </Link>

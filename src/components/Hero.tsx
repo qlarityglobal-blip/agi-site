@@ -2,26 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowDown, Award } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Award } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
-import { Marquee } from "@/components/Marquee";
+import { Magnetic } from "@/components/Magnetic";
 
 const stats = [
   { value: 30, suffix: "+", label: "Years experience" },
   { value: 3, suffix: "", label: "Regional teams" },
   { value: 6, suffix: "", label: "Specialist trades" },
   { value: 100, suffix: "+", label: "Projects delivered" },
-];
-
-const tickerItems = [
-  "B-BBEE LEVEL 2 CONTRIBUTOR",
-  "30+ YEARS EXPERIENCE",
-  "CIDB & CSD REGISTERED",
-  "NATIONWIDE PROJECT TEAMS",
-  "CORPORATE · MEDICAL · RETAIL · RESIDENTIAL",
-  "SAGGA AFFILIATED",
 ];
 
 const slides = [
@@ -34,22 +25,28 @@ const slides = [
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5500);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden bg-charcoal">
-      <div className="absolute inset-0">
+    <section ref={sectionRef} className="relative flex min-h-screen flex-col overflow-hidden bg-charcoal">
+      <motion.div style={{ y: parallaxY }} className="absolute inset-0">
         <AnimatePresence mode="sync">
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 1.08 }}
+            initial={{ opacity: 0, scale: 1.06 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ opacity: { duration: 1.2 }, scale: { duration: 6, ease: "linear" } }}
+            transition={{ opacity: { duration: 1.4 }, scale: { duration: 6.5, ease: "linear" } }}
             className="absolute inset-0"
           >
             <Image
@@ -62,65 +59,67 @@ export function Hero() {
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/75 to-charcoal/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/30 to-transparent" />
-        <div className="absolute inset-0 bg-grid opacity-20" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-onyx/85 via-onyx/20 to-transparent" />
+      </motion.div>
 
       <div className="relative flex flex-1 items-center">
-        <div className="mx-auto w-full max-w-7xl px-6 pt-28 pb-10 lg:px-10">
+        <div className="mx-auto w-full max-w-6xl px-6 pt-32 pb-10 lg:px-10">
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.3em] text-bronze"
+            className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-aluminium-light"
           >
-            <span className="h-px w-10 bg-bronze" />
+            <span className="label-mark" />
             Interior Specialists &middot; Johannesburg, South Africa
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="max-w-3xl font-heading text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[4.5rem]"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="max-w-3xl font-heading text-6xl font-light leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-8xl"
           >
-            Interiors engineered for <span className="text-gradient">South Africa&rsquo;s</span>{" "}
-            biggest builds.
+            Aluminium, glazing and drywall for South Africa&rsquo;s biggest builds.
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22 }}
-            className="mt-7 max-w-xl text-lg leading-relaxed text-aluminium-light"
+            transition={{ duration: 0.7, delay: 0.24 }}
+            className="mt-8 max-w-lg text-base leading-relaxed text-aluminium-light"
           >
-            Aluminium, glazing, drywall and ceiling systems delivered at scale for
-            hospitals, malls, campuses and corporate headquarters &mdash; with over
-            30 years of experience and teams stationed across the country.
+            We fit out hospitals, malls, campuses and corporate offices in
+            aluminium, glazing, drywall and ceilings. Over 30 years in the
+            trade, with teams based right across the country.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.34 }}
+            transition={{ duration: 0.7, delay: 0.36 }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <Link
-              href="/gallery"
-              className="group inline-flex items-center gap-2 rounded-full bg-bronze px-7 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-12px_rgba(31,147,171,0.7)] transition hover:bg-bronze-dark"
-            >
-              View Our Work
-              <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
-            >
-              Contact Us
-            </Link>
-            <span className="inline-flex items-center gap-2 rounded-full border border-bronze/40 bg-bronze/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-bronze">
-              <Award size={14} />
+            <Magnetic strength={0.3} className="inline-flex">
+              <Link
+                href="/gallery"
+                className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm text-charcoal transition hover:bg-aluminium-light"
+              >
+                View Our Work
+                <ArrowRight size={15} className="transition group-hover:translate-x-1" />
+              </Link>
+            </Magnetic>
+            <Magnetic strength={0.3} className="inline-flex">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm text-white transition hover:border-white"
+              >
+                Contact Us
+              </Link>
+            </Magnetic>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3.5 py-2 text-xs uppercase tracking-wider text-aluminium-light">
+              <Award size={13} />
               B-BBEE Level 2
             </span>
           </motion.div>
@@ -133,7 +132,7 @@ export function Hero() {
           >
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="font-heading text-3xl font-bold text-white sm:text-4xl">
+                <p className="font-heading text-3xl font-medium text-white sm:text-4xl">
                   <AnimatedCounter value={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-wider text-aluminium">
@@ -145,36 +144,18 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative flex items-center gap-1.5 px-6 pb-4 lg:px-10">
+      <div className="relative flex items-center justify-center gap-1.5 pb-8">
         {slides.map((s, i) => (
           <button
             key={s.src}
             aria-label={`Show slide ${i + 1}`}
             onClick={() => setIndex(i)}
             className={`h-1 rounded-full transition-all duration-500 ${
-              i === index ? "w-8 bg-bronze" : "w-3 bg-white/30 hover:bg-white/50"
+              i === index ? "w-8 bg-white" : "w-3 bg-white/30 hover:bg-white/50"
             }`}
           />
         ))}
       </div>
-
-      <div className="relative border-t border-white/10 bg-charcoal-soft/60 py-4 text-aluminium-light">
-        <Marquee items={tickerItems} />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-[4.5rem] left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/60 lg:flex"
-      >
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown size={16} />
-        </motion.span>
-      </motion.div>
     </section>
   );
 }

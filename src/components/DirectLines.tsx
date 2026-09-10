@@ -18,19 +18,19 @@ export function DirectLines({
           key={line.label}
           variants={revealItem}
           href={`tel:${line.number.replace(/\s/g, "")}`}
-          className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-charcoal-soft/60 p-6 transition hover:border-bronze/50 hover:bg-charcoal-soft"
+          className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-charcoal-soft p-6 transition hover:border-white/30"
         >
           <div className="flex items-center justify-between">
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-bronze/15 text-bronze">
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white">
               <Phone size={20} />
             </span>
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-aluminium">
+            <span className="text-[11px] uppercase tracking-widest text-aluminium">
               {line.note}
             </span>
           </div>
           <div className="mt-6">
             <p className="text-xs uppercase tracking-wider text-aluminium-light">{line.label}</p>
-            <p className="mt-1 font-heading text-2xl font-bold text-white transition group-hover:text-bronze">
+            <p className="mt-1 font-heading text-2xl font-medium text-white">
               {line.number}
             </p>
           </div>
@@ -40,19 +40,19 @@ export function DirectLines({
       <motion.a
         variants={revealItem}
         href={`mailto:${email}`}
-        className="group flex flex-col justify-between rounded-2xl border border-bronze/40 bg-bronze/10 p-6 transition hover:border-bronze hover:bg-bronze/20"
+        className="group flex flex-col justify-between rounded-2xl border border-white bg-white p-6 transition hover:bg-aluminium-light"
       >
         <div className="flex items-center justify-between">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-bronze text-white">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-charcoal text-white">
             <Mail size={20} />
           </span>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-aluminium-light">
+          <span className="text-[11px] uppercase tracking-widest text-aluminium">
             Email
           </span>
         </div>
         <div className="mt-6">
-          <p className="text-xs uppercase tracking-wider text-aluminium-light">All enquiries</p>
-          <p className="mt-1 break-all font-heading text-xl font-bold text-white transition group-hover:text-bronze">
+          <p className="text-xs uppercase tracking-wider text-graphite">All enquiries</p>
+          <p className="mt-1 break-all font-heading text-xl font-medium text-charcoal">
             {email}
           </p>
         </div>

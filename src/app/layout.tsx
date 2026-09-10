@@ -4,23 +4,12 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
-import { contact } from "@/lib/data";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { contact, services } from "@/lib/data";
 
-const outfit = localFont({
-  variable: "--font-outfit",
-  src: [
-    { path: "../fonts/Outfit-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../fonts/Outfit-Bold.ttf", weight: "700", style: "normal" },
-  ],
-  display: "swap",
-});
-
-const workSans = localFont({
-  variable: "--font-work-sans",
-  src: [
-    { path: "../fonts/WorkSans-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../fonts/WorkSans-Bold.ttf", weight: "700", style: "normal" },
-  ],
+const geist = localFont({
+  variable: "--font-geist",
+  src: "../fonts/Geist-Variable.ttf",
   display: "swap",
 });
 
@@ -84,6 +73,18 @@ const jsonLd = {
     addressCountry: "ZA",
   },
   areaServed: "South Africa",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Interior Fit-Out Services",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.name,
+        url: `${baseUrl}/services/${s.slug}`,
+      },
+    })),
+  },
   hasCredential: [
     {
       "@type": "EducationalOccupationalCredential",
@@ -108,9 +109,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${workSans.variable} h-full antialiased`}
+      className={`${geist.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-cream text-charcoal">
+        <SmoothScroll />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
